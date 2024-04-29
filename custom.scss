@@ -1,0 +1,20 @@
+$vista-blue: #9ba2ffff;
+$rose-quartz: #a499beff;
+$beaver: #9e8576ff;
+$coyote: #7a542eff;
+$space-cadet: #2a2e45ff;
+
+/*-- scss:defaults --*/
+
+$body-bg: #ffffff;
+$link-color: $vista-blue;
+
+.section-background {
+  background-color: $coyote;
+}
+
+/*-- scss:rules --*/
+
+.reveal .slide strong {
+  color: $beaver;
+}

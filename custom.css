@@ -1,0 +1,38 @@
+/* TODO: figure out how inheritance works with the scss */
+:root{
+  --vista-blue: #9ba2ffff;
+  --rose-quartz: #a499beff;
+  --beaver: #9e8576ff;
+  --coyote: #7a542eff;
+  --space-cadet: #2a2e45ff;
+}
+
+.tag {
+  background-color: black;
+  color: white;
+  font-size: 0.3em;
+  padding: 10px;
+  font-family: 'Roboto Condensed', sans-serif;
+  vertical-align: middle;
+}
+
+/*
+Credits:
+https://github.com/emitanaka/talks/blob/master/Toronto2022/assets/custom.css
+*/
+.circle {
+    border-radius: 50%;
+    width: 1em;
+    line-height: 1em;
+    padding: 3px;
+    display: inline-block;
+    background: black;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.reveal .slide .reminder {
+  background-color: var(--rose-quartz);
+}

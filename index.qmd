@@ -1,0 +1,120 @@
+---
+title: "Créer des packages R"
+subtitle: "R-Ladies Paris"
+author: "María Paula Caldas"
+# code-line-numbers: false
+format: 
+  revealjs:
+    incremental: false
+    theme: [simple, custom.scss]
+    css: custom.css
+    slide-number: true
+    footer: "<https://mpaulacaldas.github.io/rladies-r-pkg-dev>"
+execute: 
+  eval: false
+  echo: true
+knitr: 
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+---
+
+## Un package c'est...
+
+Du **code**, des **données**, et de la **documentation** dans un format qui
+est **facile à partager**
+
+```{r}
+#| code-line-numbers: "|1-2|3-8|9-13|15-16"
+#| label: ggplot2-example
+#| eval: false
+# facile à installer...
+install.packages("ggplot2")
+
+# facile à utiliser...
+library(ggplot2)
+ggplot(diamonds, aes(x, y)) + 
+  geom_bin_2d(show.legend = FALSE) +
+  scale_y_log10()
+
+# ils peuvent contenir des données et des fonctions, 
+# avec leur documentation
+data(package = "ggplot2")
+?ggplot2::diamonds
+
+# ainsi que de la documentation "longue"...
+vignette("ggplot2-specs")
+```
+
+## Pour quoi _packager_ votre code?
+
+Un package vous donne des outils pour aider les autres à mieux 
+__comprendre__ et mieux __intéragir__ avec votre code.
+
+::: {.incremental}
+- Fonctions, données et exemples.
+- Documentation "longue" avec des _vignettes_.
+- Créer un site web facilement avec `{pkgdown}`
+- Structures pour mieux communiquer avec d'autres développeurs et utilisateurs (e.g. `NEWS.md`, `CONTRIBUTING.md`)
+:::
+
+## Suis-je prête à créer mon propre paquet ?
+
+- Toujours, tant qu'on soit motivées !
+- _Must-have:_ Savoir créer une fonction
+- _Nice-to-have:_ Savoir utiliser Git et Markdown
+
+
+# On y va, avec _usethis_... {background-color="#2a2e45ff"  background-image="https://usethis.r-lib.org/logo.png" background-size="150px" background-position="1050px 50px"}
+
+\ 
+
+## [1]{.circle} On met en place l'infrastructure
+
+```{r}
+library(usethis)
+
+create_package("location-i-want/mypackage")
+
+# On fait ensemble:
+# 
+# - [ ] Changer la DESCRIPTION
+# - [ ] check()
+# - [ ] Rajouter une LICENSE
+# - [ ] Tip: on sauvegarde nos commandes dans un fichier "dev.R"
+```
+
+## [2]{.circle} On crée une fonction
+
+```{r}
+#| code-fold: true
+#| code-summary: "La fonction qu'on utilisera aujourd'hui..."
+year_progress <- function(date, is_leap_year = FALSE) {
+  nominator   <- as.numeric(format(date, "%j"))
+  denominator <- if (is_leap_year) 366 else 365
+  share <- round(nominator * 100 / denominator)
+  message(share, "% of the year is done!")
+}
+```
+
+- `use_r()`
+- `load_all()` ou {{< kbd Shift-Ctrl-L >}}
+- `check()`
+
+## [3]{.circle} On rajoute un peu de documentation
+
+- Insert Roxygen Skeleton
+- `document()`
+- `use_readme_rmd()`
+- `use_vignette()`
+
+## [4]{.circle} On teste notre fonction
+- `use_test()`
+- `check()`
+
+## [5]{.circle} On partage
+- `use_git()` + `use_github()`
+- `install()`
+
+
+# Merci! {background-color="#2a2e45ff"}
